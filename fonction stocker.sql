@@ -29,3 +29,46 @@ CREATE FUNCTION nom_cours_plus_participation_de_adherant(AD VARCHAR(11)) RETURNS
 DELIMITER ;
 
 SELECT nom_cours_plus_participation_de_adherant('JA-1990-729');
+
+
+-- 
+
+DELIMITER //
+CREATE FUNCTION f_nbr_particip_total() RETURNS INT
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb FROM Adherent;
+    RETURN nb;
+end //
+DELIMITER ;
+SELECT f_nbr_particip_total();
+
+
+-- Fonction de retour du nombre de scéance par activité
+DELIMITER //
+CREATE FUNCTION f_nbr_sceance_activite(nomActivite VARCHAR(30)) RETURNS INT
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb FROM Sceance WHERE idActivite = (SELECT idActivite FROM activite WHERE nom = nomActivite);
+    RETURN nb;
+end //
+DELIMITER ;
+SELECT f_nbr_sceance_activite('Cours de yoga');
+
+-- Fonction de retour du nombre d'adhérent par activite
+DELIMITER //
+CREATE FUNCTION f_nbr_adherent_activite(nomActivite VARCHAR(30)) RETURNS INT
+BEGIN
+    DECLARE nb INT;
+    SELECT COUNT(*) INTO nb FROM participationsceance WHERE idSceance IN (SELECT idSceance FROM sceance WHERE idActivite = (
+        SELECT idActivite FROM activite WHERE nom = nomActivite
+        ));
+    RETURN nb;
+end //
+DELIMITER ;
+SELECT f_nbr_adherent_activite('Séance de Pilates');
+
+
+
+CALL ajout_activite('Cours de Yoga', 10.00, 15.00, 4,6,'2024-10-10')
+CALL ajout_particip_sceance(2, 'KH-1993-574', 4.5)
