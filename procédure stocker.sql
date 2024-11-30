@@ -1,7 +1,7 @@
 DELIMITER //
-CREATE PROCEDURE ajout_adherent (IN idadher VARCHAR(11), IN lnom VARCHAR(30),IN lprenom VARCHAR(30) ,IN laddresse VARCHAR(100), IN ldatenaiss DATE)
+CREATE PROCEDURE ajout_adherent (IN lnom VARCHAR(30),IN lprenom VARCHAR(30) ,IN laddresse VARCHAR(100), IN ldatenaiss DATE)
 BEGIN
-    INSERT INTO adherent (idAdherent, nom, prenom, adresse, dateNaiss) VALUES (idadher,lnom,lprenom,laddresse,ldatenaiss);
+    INSERT INTO adherent (nom, prenom, adresse, dateNaiss) VALUES (lnom,lprenom,laddresse,ldatenaiss);
 end //
 DELIMITER ;
 
