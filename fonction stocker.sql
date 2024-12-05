@@ -68,7 +68,14 @@ end //
 DELIMITER ;
 SELECT f_nbr_adherent_activite('Séance de Pilates');
 
-
+DELIMITER //
+CREATE FUNCTION f_nomcat(lid INT) RETURNS VARCHAR(30)
+BEGIN
+    DECLARE nom VARCHAR(30);
+    SELECT nomCategorie INTO nom FROM categorie WHERE idCategorie = lid;
+    RETURN nom;
+end //
+DELIMITER ;
 
 CALL ajout_activite('Cours de Yoga', 10.00, 15.00, 4,6,'2024-10-10')
 CALL ajout_particip_sceance(2, 'KH-1993-574', 4.5)
