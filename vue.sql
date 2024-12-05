@@ -10,6 +10,7 @@
             INNER JOIN adherent a on p.idAdherent = a.idAdherent
         GROUP BY a.idAdherent
      ;
+
 --Trouver le prix moyen par activité pour chaque participant
  CREATE VIEW prix_moy_activité_par_participant
          AS
@@ -29,10 +30,11 @@ CREATE VIEW note_appreciation_activite
 AS
 SELECT
     nom,
-    AVG(note)
+    AVG(noteAppreciation)
     FROM activite
 INNER JOIN sceance s on activite.idActivite = s.idActivite
 INNER JOIN participationsceance p on s.idSceance = p.idSceance
+GROUP BY nom;
 
 -- 
 CREATE VIEW moyenne_note_appreciation_activite
@@ -57,10 +59,10 @@ GROUP BY activite.idActivite;
 -- 
 CREATE VIEW nb_participant_moyen_par_mois
     AS
-    SELECT
-        count(p.idAdherent) as "Nombre Participant par activité"
-        ,month(date) as mois
-FROM activite
+select count(idAdherent), activite.nom, month(s.date) FROM activite
 INNER JOIN sceance s on activite.idActivite = s.idActivite
 INNER JOIN participationsceance p on s.idSceance = p.idSceance
-GROUP BY month(date);
+GROUP BY  activite.idActivite,month(s.date);
+
+-- faire une switch pour afficher les nom des moi 
+
