@@ -43,3 +43,13 @@ CREATE TRIGGER age_adherent
        set NEW.age = DATEDIFF(curdate(),NEW.dateNaiss)/365.5;
     end //
 DELIMITER ;
+-- 3.5
+Delimiter //
+CREATE TRIGGER age_adherent2
+    BEFORE UPDATE ON adherent
+    FOR EACH ROW
+    BEGIN
+       set NEW.age = DATEDIFF(curdate(),NEW.dateNaiss)/365.5;
+    end //
+DELIMITER ;
+DELIMITER //
