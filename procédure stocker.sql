@@ -43,3 +43,60 @@ BEGIN
     INSERT INTO participationsceance VALUES (lidSceance,lidAdherent,lnoteAppreciation);
 end //
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE ModSceance(
+    IN lidSceance INT,
+    IN ldate DATE,
+    IN lheure TIME,
+    IN lnbPlaceDispo INT
+)
+BEGIN
+    UPDATE Sceance
+    SET
+        date = ldate,
+        heure = lheure,
+        nbPlaceDispo = lnbPlaceDispo
+    WHERE
+        idSceance = lidSceance;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE ModActivite(IN lidActivite INT,IN lnom VARCHAR(30),IN lcoutOrgCli DOUBLE, IN lcoutVentCli DOUBLE,IN lidCategorie INT
+)
+BEGIN
+    UPDATE Activite
+    SET
+        nom = lnom,
+        coutOrgCli = lcoutOrgCli,
+        coutVentCli = lcoutVentCli,
+        idCategorie = lidCategorie
+    WHERE
+        idActivite = lidActivite;
+END //
+DELIMITER ;
+
+DELIMITER //
+
+CREATE PROCEDURE ModAdherent(
+    IN lidAdherent VARCHAR(11),
+    IN lnom VARCHAR(30),
+    IN lprenom VARCHAR(30),
+    IN ladresse VARCHAR(100),
+    IN ldateNaiss DATE
+)
+BEGIN
+    UPDATE Adherent
+    SET
+        nom = lnom,
+        prenom = lprenom,
+        adresse = ladresse,
+        dateNaiss = ldateNaiss
+    WHERE
+        idAdherent = lidAdherent;
+END //
+
+DELIMITER ;
+
