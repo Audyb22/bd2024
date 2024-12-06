@@ -4,8 +4,12 @@ CREATE TRIGGER num_identification
 BEFORE INSERT ON Adherent
 FOR EACH ROW
 BEGIN
+    DECLARE  id_doubler condition for SQLSTATE '23000';
+
+           SIGNAL id_doubler  SET MESSAGE_TEXT ='Par une chance incroyable le ID a été créé 2 fois... recommencer ';
+
     SET new.idAdherent = CONCAT(LEFT(new.prenom,1),LEFT(new.nom,1),'-',YEAR(new.dateNaiss),'-',
-        ROUND( RAND() * 9 ) + 1,ROUND( RAND() * 9 ) + 1,ROUND( RAND() * 9 ) + 1);
+        ROUND( RAND() * 9 )+ 1,ROUND( RAND() * 9 ) + 1,ROUND( RAND() * 9 ) + 1);
 end //
 DELIMITER ;
 

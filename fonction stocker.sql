@@ -68,11 +68,19 @@ end //
 DELIMITER ;
 SELECT f_nbr_adherent_activite('Séance de Pilates');
 
+
+
 DELIMITER //
 CREATE FUNCTION f_nomcat(lid INT) RETURNS VARCHAR(30)
 BEGIN
     DECLARE nom VARCHAR(30);
+    DECLARE id_non_existant CONDITION FOR SQLSTATE '42000';
     SELECT nomCategorie INTO nom FROM categorie WHERE idCategorie = lid;
+    IF nom is null
+        THEN
+            SIGNAL id_non_existant SET message_text ='L\'identifiant n\'existe pas!';
+    END IF;
+
     RETURN nom;
 end //
 DELIMITER ;
