@@ -1,5 +1,6 @@
 CREATE TABLE Administrateur(
     idAdmin INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50),
     motDePasse VARCHAR(50)
 );
 CREATE TABLE Adherent(
