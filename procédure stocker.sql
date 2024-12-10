@@ -100,3 +100,34 @@ END //
 
 DELIMITER ;
 
+DELIMiTER //
+CREATE PROCEDURE supprimerSceance(IN id VARCHAR(5))
+BEGIN
+    DELETE FROM participationsceance
+    WHERE idSceance = id;
+    DELETE FROM sceance
+    WHERE idSceance = id;
+end //
+DELIMITER ;
+
+DELIMiTER //
+CREATE PROCEDURE supprimerActivite(IN id VARCHAR(5))
+BEGIN
+    DELETE FROM participationsceance
+    WHERE idSceance IN (SELECT idSceance FROM sceance WHERE idActivite = id);
+    DELETE FROM sceance
+    WHERE idActivite = id;
+    DELETE FROM activite
+    WHERE idActivite = id;
+end //
+DELIMITER ;
+
+DELIMiTER //
+CREATE PROCEDURE supprimerAdherent( id VARCHAR(50))
+BEGIN
+    DELETE FROM participationsceance
+    WHERE idAdherent = id;
+    DELETE FROM adherent
+    WHERE idAdherent = id;
+end //
+DELIMITER ;
