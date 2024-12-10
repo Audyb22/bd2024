@@ -1,1 +1,44 @@
-#
+CALL ajout_adherent('Dupont', 'Jean', '123 Rue Principale, Paris', '1980-05-15');
+CALL ajout_adherent('Martin', 'Sophie', '456 Avenue des Champs, Lyon', '1992-08-24');
+CALL ajout_adherent('Bernard', 'Marie', '789 Boulevard de la République, Marseille', '1985-11-12');
+CALL ajout_adherent('Petit', 'Pierre', '101 Place de la Victoire, Toulouse', '1990-02-17');
+CALL ajout_adherent('Leroy', 'Anne', '202 Rue de la Liberté, Nice', '1983-03-05');
+CALL ajout_adherent('Moreau', 'Luc', '303 Avenue du Général, Bordeaux', '1987-07-21');
+CALL ajout_adherent('Roux', 'Clara', '404 Chemin du Lac, Nantes', '1995-01-10');
+CALL ajout_adherent('Schmitt', 'Paul', '505 Rue des Fleurs, Strasbourg', '1989-09-30');
+CALL ajout_adherent('Garcia', 'Laura', '606 Rue des Écoles, Lille', '1993-06-25');
+CALL ajout_adherent('David', 'Antoine', '707 Avenue de l\'Église, Rennes', '1986-12-14');
+
+CALL ajout_categorie('Sports');
+CALL ajout_categorie('Arts');
+CALL ajout_categorie('Musique');
+CALL ajout_categorie('Technologie');
+CALL ajout_categorie('Littérature');
+CALL ajout_categorie('Gastronomie');
+CALL ajout_categorie('Voyages');
+CALL ajout_categorie('Photographie');
+CALL ajout_categorie('Cinéma');
+CALL ajout_categorie('Danse');
+
+CALL ajout_activite('Football', 100.0, 150.0, 11, 3, '2023-01-01');
+CALL ajout_activite('Peinture', 75.0, 120.0, 12, 3, '2023-01-02');
+CALL ajout_activite('Guitare', 90.0, 140.0, 13, 3, '2023-01-03');
+CALL ajout_activite('Codage', 110.0, 160.0, 14, 3, '2023-01-04');
+CALL ajout_activite('Écriture', 85.0, 130.0, 15, 3, '2023-01-05');
+CALL ajout_activite('Cuisine', 95.0, 145.0, 16, 3, '2023-01-06');
+CALL ajout_activite('Randonnée', 70.0, 115.0, 17, 3, '2023-01-07');
+CALL ajout_activite('Photographie', 80.0, 125.0, 18, 3, '2023-01-08');
+CALL ajout_activite('Théâtre', 105.0, 155.0, 19, 3, '2023-01-09');
+CALL ajout_activite('Danse', 90.0, 140.0, 20, 3, '2023-01-10');
+
+CALL ajout_particip_sceance(18, 'AD-1986-754', 4.5);
+CALL ajout_particip_sceance(22, 'AL-1983-885', 4.2);
+CALL ajout_particip_sceance(22, 'CR-1995-336', 4.8);
+CALL ajout_particip_sceance(24, 'JD-1980-821', 4.0);
+CALL ajout_particip_sceance(25, 'LG-1993-323', 4.7);
+CALL ajout_particip_sceance(26, 'LM-1987-329', 4.3);
+CALL ajout_particip_sceance(27, 'MB-1985-348', 4.6);
+CALL ajout_particip_sceance(28, 'PN-2004-264', 4.9);
+CALL ajout_particip_sceance(19, 'PP-1990-885', 4.1);
+CALL ajout_particip_sceance(30, 'PS-1989-929', 4.4);
+CALL ajout_particip_sceance(31, 'SM-1992-948', 4.5);

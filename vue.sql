@@ -64,5 +64,5 @@ INNER JOIN sceance s on activite.idActivite = s.idActivite
 INNER JOIN participationsceance p on s.idSceance = p.idSceance
 GROUP BY  activite.idActivite,month(s.date);
 
--- faire une switch pour afficher les nom des moi 
+
 
