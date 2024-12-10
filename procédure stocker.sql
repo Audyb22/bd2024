@@ -133,8 +133,11 @@ end //
 DELIMITER ;
 
 DELIMITER //
-CREATE PROCEDURE ajout_particip_sceance(IN lidSceance INT, IN lidAdherent VARCHAR(30),IN lnoteAppreciation DOUBLE)
+CREATE PROCEDURE p_Noter(IN lidSceance INT,IN lidAdherent VARCHAR(11), IN lnote DOUBLE
+)
 BEGIN
-    INSERT INTO participationsceance VALUES (lidSceance,lidAdherent,lnoteAppreciation);
-end //
+    UPDATE ParticipationSceance
+    SET noteAppreciation = lnote
+    WHERE idSceance = lidSceance AND idAdherent = lidAdherent;
+END //
 DELIMITER ;
