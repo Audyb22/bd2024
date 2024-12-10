@@ -131,3 +131,10 @@ BEGIN
     WHERE idAdherent = id;
 end //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE ajout_particip_sceance(IN lidSceance INT, IN lidAdherent VARCHAR(30),IN lnoteAppreciation DOUBLE)
+BEGIN
+    INSERT INTO participationsceance VALUES (lidSceance,lidAdherent,lnoteAppreciation);
+end //
+DELIMITER ;
