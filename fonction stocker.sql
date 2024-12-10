@@ -85,5 +85,64 @@ BEGIN
 end //
 DELIMITER ;
 
+
+DELIMITER //
+CREATE FUNCTION f_sonnec_adher(lid VARCHAR(30)) RETURNS varchar(30)
+BEGIN
+    DECLARE lenom VARCHAR(30);
+    SELECT nom INTO lenom FROM adherent WHERE idAdherent = lid;
+    return lenom;
+end //
+
+DELIMITER //
+CREATE FUNCTION f_sonnec_admin(lnom VARCHAR(30), lpass VARCHAR(30)) RETURNS INT(30)
+BEGIN
+    DECLARE lid int;
+    SELECT idAdmin INTO lid FROM administrateur WHERE nom = lnom AND motDePasse = lpass;
+    return lid;
+end //
+
+    
+DELIMITER //
+CREATE FUNCTION f_nomActiv(lid INT) RETURNS VARCHAR(30)
+BEGIN
+    DECLARE lnom VARCHAR(30);
+    SELECT nom INTO lnom FROM activite WHERE idActivite = lid;
+    return lnom;
+end //
+DELIMITER ;
+
+DELIMITER //
+CREATE FUNCTION f_note(lidSe INT, lidAd VARCHAR(30)) RETURNS double
+BEGIN
+    DECLARE nb double;
+    SELECT noteAppreciation INTO nb FROM participationsceance WHERE idAdherent = lidAd AND idSceance = lidSe;
+    return nb;
+end //
+DELIMITER ;
+
+
+DELIMITER //
+
+CREATE FUNCTION f_adherent_deja_activite(lidA VARCHAR(30), lidActivite INT)
+RETURNS VARCHAR(30)
+BEGIN
+    DECLARE vr VARCHAR(30);
+    IF EXISTS (
+        SELECT 1
+        FROM ParticipationSceance ps
+        JOIN Sceance s ON ps.idSceance = s.idSceance
+        WHERE ps.idAdherent = lidA AND s.idActivite = lidActivite
+    ) THEN
+        SET vr = 'OUI';
+    ELSE
+        SET vr = 'NON';
+    END IF;
+
+    RETURN vr;
+END //
+
+DELIMITER ;
+
 CALL ajout_activite('Cours de Yoga', 10.00, 15.00, 4,6,'2024-10-10')
 CALL ajout_particip_sceance(2, 'KH-1993-574', 4.5)
