@@ -56,4 +56,31 @@ CREATE TRIGGER age_adherent2
        set NEW.age = DATEDIFF(curdate(),NEW.dateNaiss)/365.5;
     end //
 DELIMITER ;
+
+-- 3.6
+Delimiter //
+CREATE TRIGGER noteActivite1
+    BEFORE UPDATE ON participationsceance
+    FOR EACH ROW
+    BEGIN
+       UPDATE sceance
+        SET note = (note + new.noteAppreciation)/2
+       WHERE idSceance = old.idSceance AND note > 0;
+    end //
+DELIMITER ;
 DELIMITER //
+
+-- 3.7
+Delimiter //
+CREATE TRIGGER noteActivite2
+    BEFORE UPDATE ON participationsceance
+    FOR EACH ROW
+    BEGIN
+       UPDATE sceance
+        SET note = new.noteAppreciation
+       WHERE idSceance = old.idSceance AND note = 0;
+    end //
+DELIMITER ;
+DELIMITER //
+
+
