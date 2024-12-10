@@ -143,26 +143,4 @@ END //
 DELIMITER ;
 
 
-Delimiter //
-CREATE TRIGGER noteActivite1
-    BEFORE UPDATE ON participationsceance
-    FOR EACH ROW
-    BEGIN
-       UPDATE sceance
-        SET note = (note + new.noteAppreciation)/2
-       WHERE idSceance = old.idSceance AND note > 0;
-    end //
-DELIMITER ;
-DELIMITER //
 
-Delimiter //
-CREATE TRIGGER noteActivite2
-    BEFORE UPDATE ON participationsceance
-    FOR EACH ROW
-    BEGIN
-       UPDATE sceance
-        SET note = new.noteAppreciation
-       WHERE idSceance = old.idSceance AND note = 0;
-    end //
-DELIMITER ;
-DELIMITER //
